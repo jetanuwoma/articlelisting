@@ -1,6 +1,6 @@
-class CreateArticles < ActiveRecord::Migration[7.0]
+class CreateListings < ActiveRecord::Migration[7.0]
   def change
-    create_table :articles do |t|
+    create_table :listings do |t|
       t.string :title
       t.integer :external_id
       t.text :description
