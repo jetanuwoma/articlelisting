@@ -2,6 +2,12 @@
 
 one:
   name: MyString
+  external_id: 1
+  current_avatar: MyString
+  rating: 1
 
 two:
   name: MyString
+  external_id: 1
+  current_avatar: MyString
+  rating: 1
