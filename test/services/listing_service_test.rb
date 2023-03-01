@@ -36,20 +36,20 @@ class ListingServiceTest < ActiveSupport::TestCase
   test 'creates new article' do
     articles = ListingService.new
     assert_difference 'Listing.count' do
-      assert articles.load_articles
+      assert articles.load_listings
     end
   end
 
   test 'creates new user from listing' do
     articles = ListingService.new
     assert_difference 'User.count' do
-      assert articles.load_articles
+      assert articles.load_listings
     end
   end
 
   test 'associate created user to listing' do
     articles = ListingService.new
-    articles.load_articles
+    articles.load_listings
     assert_equal Listing.last.user.name, 'Lloyd'
   end
 end

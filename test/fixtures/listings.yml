@@ -1,9 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  title: MyText
+  description: MyText
+  view: 1
+  likes: 1
+  external_id: 1
+  thumbnail_link: http://example.com/test.svg
   user: one
 
 two:
-  title: MyString
+  title: MyText
+  description: MyText
+  view: 1
+  likes: 1
+  external_id: 2
+  thumbnail_link: http://example.com/test.svg
   user: two

@@ -2,6 +2,9 @@ require "application_system_test_case"
 
 class ListingsTest < ApplicationSystemTestCase
   setup do
+    sstub_request(:get, ListingService::LISTING_URL)
+      .to_return(body: [].to_json
+      )
     @listing = listings(:one)
   end
 

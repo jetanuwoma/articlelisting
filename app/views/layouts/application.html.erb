@@ -10,7 +10,12 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-zinc-900 max-w-xl mx-auto">
+    <header class="app-header pt-8 pb-5 px-6">
+      <h1 class="text-3xl font-bold">Item Listing</h1>
+    </header>
+    <main class="bg-[#F5F7F9] px-6 pt-4 pb-10 min-h-screen">
+      <%= yield %>
+    </main>
   </body>
 </html>

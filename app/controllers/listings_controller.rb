@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_action :set_listing, only: %i[ show edit update destroy ]
+  before_action :set_listing, only: %i[ show edit update destroy like_listing ]
   before_action :load_listing, only: :index
 
   # GET /listings or /listings.json
@@ -18,6 +18,12 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
+  end
+
+  def like_listing
+    @listing.likes +=1
+    @listing.save
+    redirect_to listing_path
   end
 
   # POST /listings or /listings.json

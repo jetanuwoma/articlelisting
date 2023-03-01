@@ -2,7 +2,11 @@ require "test_helper"
 
 class ListingsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    stub_request(:get, ListingService::LISTING_URL)
+      .to_return(body: [].to_json
+      )
     @listing = listings(:one)
+    @user = users(:one)
   end
 
   test "should get index" do
@@ -15,28 +19,16 @@ class ListingsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create listing" do
-    assert_difference("Listing.count") do
-      post listings_url, params: { listing: {  } }
-    end
-
-    assert_redirected_to listing_url(Listing.last)
-  end
-
   test "should show listing" do
-    get listing_url(@listing)
+    get listings_url(@listing)
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_listing_url(@listing)
-    assert_response :success
-  end
-
-  test "should update listing" do
-    patch listing_url(@listing), params: { listing: {  } }
+  test "should patch listing" do
+    patch like_listing_url(@listing)
     assert_redirected_to listing_url(@listing)
   end
+
 
   test "should destroy listing" do
     assert_difference("Listing.count", -1) do

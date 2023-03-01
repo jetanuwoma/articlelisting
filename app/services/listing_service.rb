@@ -6,8 +6,8 @@ class ListingService
 
   def fetch_listings
     uri = URI(LISTING_URL)
-    response = Faraday.get(uri)
-    @listing = JSON.parse(response.body, symbolize_names: true)
+    response = Net::HTTP.get(uri)
+    @listing = JSON.parse(response, symbolize_names: true)
   end
 
   def load_listings
@@ -29,13 +29,14 @@ class ListingService
   end
 
   def load_article(article_data, user)
-    Listing.find_or_create_by!(external_id: article_data[:id]) do |article|
-      article.user = user
-      article.title = article_data[:title]
-      article.description = article_data[:description]
-      article.thumbnail_link = article_data[:photos].first&.dig(:files, :small)
-      article.likes = article_data.dig(:reaction, :likes)
-      article.view = article_data.dig(:reaction, :views)
-    end
+    article =  Listing.find_or_create_by(external_id: article_data[:id])
+    article.update(
+      user: user,
+      title: article_data[:title],
+      description: article_data[:description],
+      thumbnail_link:article_data[:photos].first&.dig(:files, :small),
+      likes:article_data.dig(:reactions, :likes),
+      view:article_data.dig(:reactions, :views),
+    )
   end
 end
